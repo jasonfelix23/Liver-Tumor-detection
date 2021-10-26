@@ -1,0 +1,74 @@
+body{
+  background-image: url("https://images.pexels.com/photos/3683041/pexels-photo-3683041.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+ background-size: cover;
+
+}
+
+
+
+
+/* doctors section */
+
+.headDiv{
+  width: 50%;
+  margin: auto;
+}
+
+.heading{
+  font-size: 3rem;
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+
+hr{
+  border: dotted #28527a 10px;
+  border-bottom: none;
+  width: 10%;
+  margin: 50px auto;
+}
+
+.box{
+  width: 90%;
+  border: 1px solid black;
+  padding: 30px;
+  margin: auto auto 20px;
+  color: white;
+  background: rgba(0, 0, 0.5, 0.75);}
+
+
+/* testimonials */
+#testimonials{
+padding: 3rem;
+  text-align: center;
+  background-color: #28527a;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.test-h{
+  font-weight: 500;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+
+.testimonial-img{
+  border-radius: 100%;
+  width: 20%;
+  margin: 20px;
+}
+
+.carousel-item{
+  padding: 7% 15%;
+}
+
+
+/* footer */
+.ftr{
+  color: #cccccc;
+}

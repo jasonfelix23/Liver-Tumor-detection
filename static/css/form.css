@@ -1,0 +1,15 @@
+body{
+  background-image: url("https://images.pexels.com/photos/3683041/pexels-photo-3683041.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+ background-size: cover;
+}
+
+.form{
+  opacity: 1.5;
+}
+
+/* footer */
+.ftr{
+  color: #cccccc;
+}

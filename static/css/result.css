@@ -1,0 +1,19 @@
+body {
+  background-image: url("https://images.pexels.com/photos/3255761/pexels-photo-3255761.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+.main-page {
+  margin-top: 200px !important;
+  text-align: center !important;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Montserrat" !important;
+  }
+
+.formFill {
+  margin-top: 40px !important;
+  margin-bottom: 185px !important;
+}

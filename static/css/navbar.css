@@ -1,0 +1,34 @@
+
+/* navbar */
+
+.navbar{
+  background-image: linear-gradient(180deg, #28527a,#28527a);
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.navbar-brand{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding-left: 20px;
+}
+
+.nav-item{
+  padding: 0 15px;
+}
+
+.nav-link{
+ font-family: "Montserrat";
+ font-size: 1.2rem;
+ color: #fff;
+}
+
+
+.navToCat{
+  padding: 2rem 2rem;
+}
+
+a{
+color: #29a19c;
+}

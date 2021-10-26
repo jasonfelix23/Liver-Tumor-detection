@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Report</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/css/navbar.css">
+
+  <!-- js -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
+    rel="stylesheet">
+
+  <style>
+    .card {
+      margin: 50px auto;
+      max-width: 50%;
+      background-color: #f8f5f1;
+    }
+
+    .report-text {
+      max-width: 50%;
+    }
+
+
+    /* footer */
+    .ftr {
+      color: #cccccc;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Montserrat";
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <!-- navbar -->
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="">BTD</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li>
+            {% if ses == True %}
+            <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+            {% else %}
+            <a class="nav-link" href="{{url_for('login')}}">Login</a>
+            {% endif %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:5000/mainPage">Scan your MRI</a>
+          </li>
+          <li class="nav-item">
+            <div class="btn-group">
+              <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Neurologists
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <button class="dropdown-item" type="nav-link"><a
+                    href="http://127.0.0.1:5000/doctors/Mumbai">Mumbai</a></button>
+                <button class="dropdown-item" type="button"><a
+                    href="http://127.0.0.1:5000/doctors/Delhi">Delhi</a></button>
+                <button class="dropdown-item" type="button"><a
+                    href="http://127.0.0.1:5000/doctors/Bangalore">Bangalore</a></button>
+                <button class="dropdown-item" type="button"><a
+                    href="http://127.0.0.1:5000/doctors/Ahmedabad">Ahmedabad</a></button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+  </div>
+
+  <!-- report section -->
+
+
+  <div class="card">
+    <div class="card-body">
+      <h1 style="text-align: center; padding-bottom: 2rem;">Report</h1>
+      <div class="report-text container">
+        <div class="row">
+          <div class="col">
+            <p>Name:</p>
+            <p>Age:</p>
+            <p>Gender:</p>
+            <p>Blood Group:</p>
+            <p>Medical History:</p>
+            <p>Phone Number:</p>
+            <p>Date:</p>
+            <p>Result:</p>
+          </div>
+          <div class="col">
+            {% for user in user_data %}
+            <p>{{user[1]}}</p>
+            <p>{{user[2]}}</p>
+            <p>{{user[3]}}</p>
+            <p>{{user[4]}}</p>
+            <p>{{user[5]}}</p>
+            <p>{{user[6]}}</p>
+            <p>{{user[7]}}</p>
+            <p><b>{{user[8]}}</b></p>
+            {% endfor %}
+          </div>
+        </div>
+        <button class="btn-print btn btn-dark">Print Report</button>
+        <!-- For print function -->
+        <script>
+          (function (w, d) {
+            'use strict';
+
+            d.querySelector('.btn-print').addEventListener('click', function () { w.print(); }, false);
+
+          }(window, document));
+        </script>
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- footer -->
+  <footer class="small bg-light ftr">
+    <div class="ftr container py-3 py-sm-5 text-center">
+      <ul class="list-inline mt-2 mb-0 text-center">
+        <li class="list-inline-item">&copy 2021 BTD</li>
+        <li class="list-inline-item">All rights reserved.</li>
+      </ul>
+    </div>
+  </footer>
+
+
+
+
+
+
+</body>
+
+</html>

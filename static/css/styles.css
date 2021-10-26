@@ -1,0 +1,54 @@
+body{
+ background-image: url("https://miro.medium.com/max/977/1*aSC3odScNMyz7Y6MZvqJ1Q.jpeg");
+ background-color: #cccccc;
+ background-repeat: no-repeat;
+background-size: cover;
+}
+
+
+
+
+/* title page part */
+
+.main-page{
+  color: #fff;
+  text-align: center;
+  margin: 180px ;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: "Montserrat";
+}
+
+.heading{
+  font-size: 5rem;
+  text-shadow: 4px 2px 4px #000000;
+  font-weight: bold;
+}
+
+.sub-heading{
+  text-shadow: 2px 2px 4px #000000;
+}
+
+/* upload file button custom style */
+.input-group{
+  text-align: center;
+}
+
+
+
+.heading-btn{
+  font-family: "Montserrat";
+  margin: 20px;
+  padding: 20px 30px;
+}
+
+#medhist{
+  padding-top: 20px;
+}
+
+
+/* footer */
+.ftr{
+  color: #cccccc;
+}
