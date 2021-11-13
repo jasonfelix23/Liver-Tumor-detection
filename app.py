@@ -51,20 +51,20 @@ def mainPage():
     if request.method == 'POST':
         file = request.files['mri']
         if 'mri' not in request.files:
-            return render_template('btd.html', ses=ses, error="File not found!!!")
+            return render_template('ltd.html', ses=ses, error="File not found!!!")
 
         # if user does not select file, browser also
         # submit a empty part without filename
         if file.filename == '':
-            return render_template('btd.html', ses=ses, error="File not found!!!")
+            return render_template('ltd.html', ses=ses, error="File not found!!!")
         if file:
             filename = secure_filename(file.filename)
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'work.jpg')
             file.save(filepath)
-            img = cv2.imread("./static/trial.jpg")
+            img = cv2.imread("./static/work.jpg")
             img_array = process_img(img)
-            cv2.imwrite("assets/new/5.jpg", np.float32(img_array))
-            img_get = cv2.imread("assets/new/5.jpg")
+            cv2.imwrite("assets/new/Y32.jpg", np.float32(img_array))
+            img_get = cv2.imread("assets/new/Y32.jpg")
             img_fin = cv2.resize(img_get, (150, 150))
             img_array = np.array(img_fin)
             img_batch = np.expand_dims(img_array, axis=0)
@@ -75,7 +75,7 @@ def mainPage():
             result = predicted_results
             print(result)
             return render_template("result.html", img=img_fin, filename=filename, predicted_results=predicted_results, ses=ses, error="")
-    return render_template("btd.html", ses=ses, error="")
+    return render_template("ltd.html", ses=ses, error="")
 
 
 @app.route("/result")
@@ -199,7 +199,7 @@ def login():
         else:
             global ses
             ses = True
-            return render_template('btd.html', ses=ses, error="")
+            return render_template('ltd.html', ses=ses, error="")
 
     return render_template("login.html", error="")
 
@@ -209,7 +209,7 @@ def logout():
     global ses
     ses = False
 
-    return render_template('btd.html', ses=ses, error='')
+    return render_template('ltd.html', ses=ses, error='')
 
 
 #================================== DOCTOR'S PAGE ==============================================

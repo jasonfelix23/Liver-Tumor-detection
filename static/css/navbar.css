@@ -2,7 +2,7 @@
 /* navbar */
 
 .navbar{
-  background-image: linear-gradient(180deg, #28527a,#28527a);
+  background-color: #0b1d51;
   margin-left: 0;
   margin-right: 0;
 }
@@ -12,8 +12,9 @@
   font-size: 2.5rem;
   font-weight: bold;
   padding-left: 20px;
+  color: #797596;
+  
 }
-
 .nav-item{
   padding: 0 15px;
 }
@@ -21,7 +22,7 @@
 .nav-link{
  font-family: "Montserrat";
  font-size: 1.2rem;
- color: #fff;
+ color: #797596;
 }
 
 
@@ -30,5 +31,5 @@
 }
 
 a{
-color: #29a19c;
+color: #797596;
 }

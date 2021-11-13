@@ -1,5 +1,5 @@
 body{
-  background-image: url("https://images.pexels.com/photos/3683041/pexels-photo-3683041.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background-image: url("/static/images/result.jpg");
   background-color: #cccccc;
   background-repeat: no-repeat;
  background-size: cover;
@@ -8,8 +8,12 @@ body{
 .form{
   opacity: 1.5;
 }
+.h4{
+  background-color: #797596;
+}
 
 /* footer */
 .ftr{
   color: #cccccc;
 }
+
