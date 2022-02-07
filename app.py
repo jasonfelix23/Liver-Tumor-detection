@@ -5,12 +5,34 @@ import cv2
 from tensorflow import keras
 from tensorflow.keras.preprocessing import image
 from werkzeug.utils import secure_filename
+
 from PIL import Image
 import os
 
+from fastai.basics import *
+from fastai.vision.all import *
+from fastai.data.transforms import *
+
+
 app = Flask(__name__)
 db_local = 'patients.db'
-model = keras.models.load_model("classification.h5")
+
+
+path = Path(os.getcwd())
+def get_x(fname:Path): return fname
+def label_func(x): return path/'train_masks'/f'{x.stem}_mask.png'
+def foreground_acc(inp, targ, bkg_idx=0, axis=1):  # exclude a background from metric
+    "Computes non-background accuracy for multiclass segmentation"
+    targ = targ.squeeze(1)
+    mask = targ != bkg_idx
+    return (inp.argmax(dim=axis)[mask]==targ[mask]).float().mean() 
+
+def cust_foreground_acc(inp, targ):  # # include a background into the metric
+    return foreground_acc(inp=inp, targ=targ, bkg_idx=3, axis=1) # 3 is a dummy value to include the background which is 0
+
+
+learn0 = load_learner(path/f'Liver_segmentation_unet',cpu=False )
+#model = keras.models.load_model("Liver_segmentation_unet.h5")
 
 
 UPLOAD_FOLDER = './static'
@@ -22,14 +44,19 @@ ses = False
 #  ============================================== MODEL ==============================================
 
 def check(number, filename):
+    
     if number == 0:
         return 'Tumor Not Detected'
-    elif number==2:
+    elif number==1:
+        return 'Tumor Not Detected'
+    else:
         return 'Tumor Detected'
-    elif number==3:
-        return 'Tumor Detected'
-    elif number==4:
-        return 'Tumor Detected'
+
+def malignantBeningCheck(count):
+    if(count <15):
+        return 'malignant'
+    else:
+        return 'Bening'
     
 
 
@@ -65,16 +92,36 @@ def mainPage():
             img_array = process_img(img)
             cv2.imwrite("assets/new/Y32.jpg", np.float32(img_array))
             img_get = cv2.imread("assets/new/Y32.jpg")
-            img_fin = cv2.resize(img_get, (150, 150))
+            img_fin = cv2.resize(img_get, (512, 512))
             img_array = np.array(img_fin)
+            print(img_array.shape)
             img_batch = np.expand_dims(img_array, axis=0)
-            img_array = img_array.reshape(1, 150, 150, 3)
-            prediction = model.predict_on_batch(img_array)
-            classification = np.where(prediction == np.amax(prediction))[1][0]
+            img_array = img_array.reshape(-1, 512, 512, 3)
+            test_files = [img]
+            test_dl = learn0.dls.test_dl(test_files)
+            preds, y = learn0.get_preds(dl=test_dl)
+
+            predicted_mask = np.argmax(preds, axis=1)
+
+            #plt.imshow(predicted_mask[0])
+            #prediction = learn0.predict(img_fin)
+            #predicted_mask = np.argmax(prediction, axis=1)
+            a=np.array(predicted_mask[0])
+            print(np.amin(a))
+            classification = np.amax(a)
+            #classification = np.where(prediction == np.amax(prediction))[1][0]
+            #print(classification)
             predicted_results = check(classification, filename)
-            result = predicted_results
-            print(result)
-            return render_template("result.html", img=img_fin, filename=filename, predicted_results=predicted_results, ses=ses, error="")
+            result = 1
+
+            unique, counts = np.unique(a, return_counts =True)
+            print( np.array((unique, counts)).T)
+
+            if 2 in unique:
+                size_result = malignantBeningCheck(counts[2])
+                print(size_result)
+            #print(prediction)
+            return render_template("result.html", img=img_fin, filename=filename, predicted_results= predicted_results, ses=ses, error="")
     return render_template("ltd.html", ses=ses, error="")
 
 
