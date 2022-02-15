@@ -96,8 +96,14 @@
     </nav>
 
     <!-- Title part -->
-
-    <div class="main-page" style=" margin-top: 200px; text-align: center;">
+  </div>
+  <div style="display:flex;justify-content:center;flex-direction: column; text-align: center; width: 100%; ">
+    <p class="text-secondary" >Scanned image</p>
+    <div style="display:flex;justify-content:center;">
+    <img style="height:200px; width:200px" src="{{ url_for('static', filename=img) }}" />
+  </div>
+  </div>
+    <div class="main-page" style="text-align: center;">
       <h1 class="result">{{predicted_results}}</h1>
       <!-- Option to print patient details is given only when logged in -->
       {% if ses == True %}
@@ -111,7 +117,7 @@
       {% endif %}
 
 
-    </div>
+    
 
     <!-- footer -->
     <div style=" margin-top: 250px;">

@@ -5,6 +5,7 @@ import cv2
 from tensorflow import keras
 from tensorflow.keras.preprocessing import image
 from werkzeug.utils import secure_filename
+import matplotlib.pyplot as plot
 
 from PIL import Image
 import os
@@ -76,6 +77,10 @@ def process_img(img, add_pixels_value=0):
 def mainPage():
 
     if request.method == 'POST':
+        for filename in os.listdir('static/'):
+            if filename.startswith('work'):  # not to remove other images
+                os.remove('static/' + filename)
+                
         file = request.files['mri']
         if 'mri' not in request.files:
             return render_template('ltd.html', ses=ses, error="File not found!!!")
@@ -86,9 +91,11 @@ def mainPage():
             return render_template('ltd.html', ses=ses, error="File not found!!!")
         if file:
             filename = secure_filename(file.filename)
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'work.jpg')
+            timeStamp ="work" + str(time.time()) + ".jpg"
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], timeStamp )
+            
             file.save(filepath)
-            img = cv2.imread("./static/work.jpg")
+            img = cv2.imread("./static/"+timeStamp)
             img_array = process_img(img)
             cv2.imwrite("assets/new/Y32.jpg", np.float32(img_array))
             img_get = cv2.imread("assets/new/Y32.jpg")
@@ -120,12 +127,17 @@ def mainPage():
             if 2 in unique:
                 size_result = malignantBeningCheck(counts[2])
                 print(size_result)
+
+            
+
+
+
             #print(prediction)
-            return render_template("result.html", img=img_fin, filename=filename, predicted_results= predicted_results, ses=ses, error="")
+            return render_template("result.html", img = timeStamp, predicted_results= predicted_results, ses=ses, error="")
     return render_template("ltd.html", ses=ses, error="")
 
 
-@app.route("/result")
+@app.route("/result", methods=['GET', 'POST'])
 def result():
     return render_template('result.html', predicted_result="From the outer", ses=ses, error="")
 
