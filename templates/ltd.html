@@ -7,7 +7,7 @@
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/styles.css">
+  <!-- <link rel="stylesheet" href="/static/css/styles.css"> -->
   <link rel="stylesheet" href="/static/css/navbar.css">
 
   <!-- fonts -->
@@ -36,16 +36,18 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
-  </style>
+  </style> 
 
 </head>
 
 <body>
+
+
   <!-- navbar -->
-  <div>
-    <nav class="navbar navbar-expand-lg ">
-      <a class="navbar-brand" href="">LTD</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+  <div> 
+  <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+  <a class="navbar-brand" href="">LiverX</a>
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -81,7 +83,7 @@
           </li>
         </ul>
       </div>
-    </nav>
+    </nav> 
 
     <!-- Title part -->
     <!-- For failing to upload the image -->
@@ -103,18 +105,18 @@
           </span>
         </label>
         <h4>
-          <!-- Selected file will get here -->
-        </h4>
+          <!--Selected file will get here-->
+        </h4> 
         <!-- To display which file has been selected  -->
-        <script>
-          $(document).ready(function () {
-            $('input[type="file"]').change(function (e) {
-              var geekss = e.target.files[0].name;
-              $("h4").text(geekss + ' is the selected file.');
+        <script> 
+          $(document).ready(function () { 
+            $('input[type="file"]').change(function (e) { 
+              var geekss = e.target.files[0].name; 
+              $("h4").text(geekss + ' is the selected file.'); 
 
-            });
-          });
-        </script>
+            }); 
+          }); 
+        </script> 
         <!-- Upload Button -->
         <label class="input-group-btn">
           <span class="btn btn-light ">
@@ -136,7 +138,7 @@
           <li class="list-inline-item">Thank you for visiting.</li>
         </ul>
       </div>
-    </footer>
+    </footer> 
 
 </body>
 

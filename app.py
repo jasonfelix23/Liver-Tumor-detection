@@ -83,12 +83,12 @@ def mainPage():
                 
         file = request.files['mri']
         if 'mri' not in request.files:
-            return render_template('ltd.html', ses=ses, error="File not found!!!")
+            return render_template('index.html', ses=ses, error="File not found!!!")
 
         # if user does not select file, browser also
         # submit a empty part without filename
         if file.filename == '':
-            return render_template('ltd.html', ses=ses, error="File not found!!!")
+            return render_template('index.html', ses=ses, error="File not found!!!")
         if file:
             filename = secure_filename(file.filename)
             timeStamp ="work" + str(time.time()) + ".jpg"
@@ -134,12 +134,13 @@ def mainPage():
 
             #print(prediction)
             return render_template("result.html", img = timeStamp, predicted_results= predicted_results, ses=ses, error="")
-    return render_template("ltd.html", ses=ses, error="")
+    return render_template("index.html", ses=ses, error="")
 
 
 @app.route("/result", methods=['GET', 'POST'])
 def result():
     return render_template('result.html', predicted_result="From the outer", ses=ses, error="")
+
 
 
 #  ============================================== form data backend ==============================================
@@ -258,7 +259,7 @@ def login():
         else:
             global ses
             ses = True
-            return render_template('ltd.html', ses=ses, error="")
+            return render_template('index.html', ses=ses, error="")
 
     return render_template("login.html", error="")
 
@@ -268,7 +269,7 @@ def logout():
     global ses
     ses = False
 
-    return render_template('ltd.html', ses=ses, error='')
+    return render_template('login.html', ses=ses, error='')
 
 
 #================================== DOCTOR'S PAGE ==============================================

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>LiverX</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <!-- MDB -->
+  <link rel="stylesheet" href="/static/css/mdb.min.css" />
+  
+  <!-- js -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+  </script>
+</head>
+
+<body>
+  <!-- Start your project here-->
+
+  <div id="preview" class="preview"><div style="display: none;">
+  </div>
+  <div >
+    <div data-draggable="true" style="position: relative;" draggable="false" class="">
+      <!---->
+      <!---->
+      <section draggable="false" class="container pt-0" data-v-271253ee="">
+        <section class="" style="padding-bottom: 1px;"> <!-- Navbar --> 
+          <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-2">
+             <!-- Container wrapper --> 
+             <div class="container-fluid">
+               <div class="d-flex">
+                 <!-- Toggle button --> 
+                 <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> 
+                    <i class="fas fa-bars"></i> 
+                  </button> <!-- Navbar brand --> 
+                  <a class="navbar-brand ms-3" draggable="false"> 
+                    <i class="fas fa-dna text-primary" aria-controls="#picker-editor"></i> 
+                  </a> 
+                </div> 
+                <!-- Collapsible wrapper --> 
+                <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
+                  <!-- Left links --> 
+                  <ul class="navbar-nav me-auto mb-2 ms-2 ps-1 ms-lg-0 ps-lg-0 mb-lg-0"> 
+                    <li class="nav-item"> 
+                      <a class="nav-link" href="" aria-controls="#picker-editor" draggable="false">LiverX</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                      <a class="nav-link" href="" aria-controls="#picker-editor" draggable="false">Specialists</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                      <a class="nav-link" href="" aria-controls="#picker-editor" draggable="false">About</a> 
+                    </li> 
+                  </ul> 
+                  <!-- Left links --> 
+                </div> 
+                <!-- Collapsible wrapper --> 
+                <!-- Right elements --> 
+                <div class="d-flex align-items-center"> 
+                  <button type="button" class="btn          btn-white px-3 mb-1 me-2" aria-controls="#picker-editor" >
+                    {% if ses == True %}
+                      <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+                      {% else %}
+                      <a class="nav-link" href="{{url_for('login')}}">Login</a>
+                    {% endif %}
+                  </button> 
+                  <button type="button" class="btn          btn-primary mb-1 me-lg-3" aria-controls="#picker-editor">Sign up</button> 
+                </div> 
+                <!-- Right elements --> 
+              </div> 
+              <!-- Container wrapper --> 
+            </nav> 
+            <!-- Navbar --> 
+          </section>
+        </section>
+        <!---->
+      </div>
+    {% if error == "" %}
+
+    {% else %}
+      <div class="alert alert-danger" role="alert">
+        {{error}}
+      </div>
+    {% endif %}
+      <div data-draggable="true" style="position: relative;" draggable="false" class="">
+        <!---->
+        <!---->
+        <section draggable="false" class="overflow-hidden pt-0" data-v-271253ee="">
+          <section class="mb-10"> 
+            <!-- Background image --> 
+            <div class="p-5 text-center bg-image" style="background-image: url(&quot;https://images.unsplash.com/photo-1604079628040-94301bb21b91?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=Mnw5NjI0M3wwfDF8c2VhcmNofDh8fGFic3RyYWN0fGVufDB8fHx8MTY0NjQ2Mzg2OQ&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1080&quot;); height: 500px; background-size: cover; background-position: 50% 50%;" aria-controls="#picker-editor">
+            </div> 
+            <!-- Background image --> 
+            <div class="container"> 
+              <div class="card mx-4 mx-md-5 text-center shadow-5-strong" style=" margin-top: -170px; background: hsla(0, 0%, 100%, 0.7); backdrop-filter: blur(30px); "> 
+                <div class="card-body px-4 py-5 px-md-5"> 
+                  <h1 class="display-3 fw-bold ls-tight mb-4"> 
+                    <span>Accurate, Trustworthy, Timesaving</span> 
+                    <br> 
+                    <span class="text-primary">Scan your MRI</span> 
+                  </h1> 
+                  <form action="http://127.0.0.1:5000/mainPage" method='POST' enctype="multipart/form-data">
+
+                    <label class="input-group-btn">
+                      <span class="btn btn-dark btn-lg">
+                        Browse File <input type="file" name='mri' id="image" accept="image/*" style="display: none;"/>
+                      </span>
+                    </label>
+                    <h4 style="color: rgb(32, 23, 23);">
+                      <!--Selected file will get here-->
+                    </h4> 
+                    <!-- To display which file has been selected  -->
+                    <script> 
+                      $(document).ready(function () { 
+                        $('input[type="file"]').change(function (e) { 
+                          var geekss = e.target.files[0].name; 
+                          $("h4").text(geekss + ' is the selected file.'); 
+            
+                        }); 
+                      }); 
+                    </script> 
+
+                    <!-- Upload Button -->
+                    <label class="input-group-btn">
+                      <span class="btn btn-light ">
+                        Upload <input type="submit"value="Upload" style="display: none;"/>
+                      </span>
+                    </label>
+                  </form>             
+                </div> 
+              </div>
+            </div> 
+          </section>
+        </section><!---->
+      </div>
+      <div data-draggable="true" class="" style="position: relative;" draggable="false">
+        <!----><!---->
+        <section draggable="false" class="container pt-5" data-v-271253ee="">
+          <section class="mb-10"> 
+            <h2 class="fw-bold mb-4 ps-4">Frequently asked questions</h2> 
+            <div class="accordion accordion-flush" id="accordionFlushExample"> 
+              <div class="accordion-item"> 
+                <h2 class="accordion-header" id="flush-headingOne"> 
+                  <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"> 
+                    <strong>What are the symptoms of liver cancer?</strong> 
+                  </button> 
+                </h2> 
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-mdb-parent="#accordionFlushExample"> 
+                  <div class="accordion-body text-muted">Most people don't have signs and symptoms in the early stages of primary liver cancer. When signs and symptoms do appear, 
+                    they may include: (i) Losing weight without trying, 
+                    (ii) Loss of appetite,
+                    (iii) Upper abdominal pain
+                    (iv) Nausea and vomiting
+                    (v) General weakness and fatigue
+                    (vi) Abdominal swelling
+                    (vii) Yellow discoloration of your skin and the whites of your eyes (jaundice)
+                    (viii) White, chalky stools
+                  </div> 
+                </div> 
+              </div> 
+              <div class="accordion-item"> 
+                <h2 class="accordion-header" id="flush-headingTwo"> 
+                  <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo"> 
+                    <strong>How can Liver cancer be prevented?</strong> 
+                  </button> 
+                </h2> 
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-mdb-parent="#accordionFlushExample" > 
+                  <div class="accordion-body">Prevention is very important when it comes to a disease like liver cancer. The underlying cause of liver cancer is often liver 
+                    inflammation and the development of a condition called cirrhosis. In addition to avoidance of drugs and alcohol, infection (such as hepatitis B or C) and 
+                    obesity can contribute to the development of liver cancer. Steps to minimize these risks include vaccination against hepatitis B for those at risk, prompt 
+                    treatment for patients infected with hepatitis C, and maintaining a healthy weight through diet and exercise.
+                  </div> 
+                </div> 
+              </div> 
+              <div class="accordion-item"> 
+                <h2 class="accordion-header" id="flush-headingThree"> 
+                  <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree"> 
+                    <strong>How is liver cancer detected?</strong> 
+                  </button> 
+                </h2> 
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-mdb-parent="#accordionFlushExample" > 
+                  <div class="accordion-body">Patients diagnosed at an earlier stage have better outcomes. There are many strategies that are used to detect liver cancer, 
+                    including frequent imaging studies (ultrasound, computed tomography scan, magnetic resonance imagining) and routine physical exams with blood testing. 
+                    Several researchers are looking to find the one blood test that will help identify liver cancer much sooner. Until that time, 
+                    we continue to remain vigilant and screen with a variety of methods to try to catch this disease as early as possible.
+                  </div> 
+                </div> 
+              </div> 
+            </div> 
+          </section>
+        </section><!---->
+      </div>
+    </div>
+  </div>
+
+  <footer class="small bg-light ftr">
+    <div class="ftr container py-3 py-sm-5 text-center">
+      <ul class="list-inline mt-2 mb-0 text-center">
+        <li class="list-inline-item">&copy 2021 LiverX</li>
+        <li class="list-inline-item">Thank you for visiting.</li>
+      </ul>
+    </div>
+  </footer> 
+
+  <!-- End your project here-->
+
+  <!-- MDB -->
+  <script type="text/javascript" src="/static/js/mdb.min.js"></script>
+  <!-- Custom scripts -->
+  <script type="text/javascript"></script>
+</body>
+
+</html>

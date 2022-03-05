@@ -1,15 +1,19 @@
 body{
-  background-image: url("/static/images/result.jpg");
-  background-color: #cccccc;
-  background-repeat: no-repeat;
- background-size: cover;
+  background-image: url("https://img.freepik.com/free-vector/digital-technology-background-with-abstract-wave-border_53876-117508.jpg?w=1380") !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
+.main-page {
+  margin-top: 200px !important;
+  text-align: center !important;
+}
+
 
 .form{
   opacity: 1.5;
 }
 .h4{
-  background-color: #797596;
+  background-color: #000;
 }
 
 /* footer */
