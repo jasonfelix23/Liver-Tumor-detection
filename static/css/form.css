@@ -4,8 +4,8 @@ body{
   background-size: cover !important;
 }
 .main-page {
-  margin-top: 200px !important;
-  text-align: center !important;
+  margin-top: 100px !important;
+  /* text-align: center !important; */
 }
 
 
@@ -13,7 +13,7 @@ body{
   opacity: 1.5;
 }
 .h4{
-  background-color: #000;
+  background-color: #05445E;
 }
 
 /* footer */

@@ -127,13 +127,15 @@ def mainPage():
             if 2 in unique:
                 size_result = malignantBeningCheck(counts[2])
                 print(size_result)
+            else:
+                size_result = "-"
 
             
 
 
 
             #print(prediction)
-            return render_template("result.html", img = timeStamp, predicted_results= predicted_results, ses=ses, error="")
+            return render_template("result.html", img = timeStamp, predicted_results= predicted_results, size_result = size_result, ses=ses, error="")
     return render_template("index.html", ses=ses, error="")
 
 

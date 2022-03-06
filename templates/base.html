@@ -10,6 +10,8 @@
   <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
   <!-- MDB -->
@@ -28,6 +30,7 @@
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.min.js">
   </script>
+  
 </head>
 
 <body>
@@ -58,14 +61,38 @@
                   <!-- Left links --> 
                   <ul class="navbar-nav me-auto mb-2 ms-2 ps-1 ms-lg-0 ps-lg-0 mb-lg-0"> 
                     <li class="nav-item"> 
-                      <a class="nav-link" href="" aria-controls="#picker-editor" draggable="false">LiverX</a> 
+                      <a class="nav-link" href="" aria-controls="#picker-editor" draggable="false"><strong>LiverX</strong></a> 
                     </li> 
-                    <li class="nav-item"> 
-                      <a class="nav-link" href="" aria-controls="#picker-editor" draggable="false">Specialists</a> 
-                    </li> 
+
                     <li class="nav-item"> 
                       <a class="nav-link" href="" aria-controls="#picker-editor" draggable="false">About</a> 
-                    </li> 
+                    </li>
+
+                     
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="" aria-controls="#picker-editor" draggable="false" data-toggle="dropdown">Specialists</a>
+                        <div class="dropdown-menu dropdown-menu-left">
+                          <button class="dropdown-item" type="nav-link"><a
+                              href="http://127.0.0.1:5000/doctors/Mumbai">Mumbai</a></button>
+                          <button class="dropdown-item" type="button"><a
+                              href="http://127.0.0.1:5000/doctors/Delhi">Delhi</a></button>
+                          <button class="dropdown-item" type="button"><a
+                              href="http://127.0.0.1:5000/doctors/Bangalore">Bangalore</a></button>
+                          <button class="dropdown-item" type="button"><a
+                              href="http://127.0.0.1:5000/doctors/Chennai">Chennai</a></button>
+                        </div>
+                      </div>
+                    </li>
+                    
+
+
+
+
+                    <!-- <li class="nav-item"> 
+                      <a class="nav-link" href="" aria-controls="#picker-editor" draggable="false">Specialists</a> 
+                    </li>  -->
+                    
                   </ul> 
                   <!-- Left links --> 
                 </div> 

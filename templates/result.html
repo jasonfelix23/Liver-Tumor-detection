@@ -14,6 +14,8 @@
 </div>
   <div class="main-page" style="text-align: center;">
     <h1 class="result">{{predicted_results}}</h1>
+    <h1 class="result">Tumour type: {{size_result}}</h1>
+    
     <!-- Option to print patient details is given only when logged in -->
     {% if ses == True %}
     <button type="button" class="btn-light btn-lg formFill" style="margin-top: 30px;"><a

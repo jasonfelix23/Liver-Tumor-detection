@@ -1,64 +1,119 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+{% extends "base.html" %}
+{% block title %}Info{% endblock %}
 
-<head>
-  <meta charset="utf-8">
+{% block header %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="/static/css/navbar.css"> -->
 
-  <title>Report</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/navbar.css">
+<!-- js -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+crossorigin="anonymous"></script>
 
-  <!-- js -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+<!-- fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
+rel="stylesheet">
 
-  <!-- fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
-    rel="stylesheet">
+<style>
+body{
+  background-image: url("https://img.freepik.com/free-vector/digital-technology-background-with-abstract-wave-border_53876-117508.jpg?w=1380") !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+.card {
+  margin: 100px auto;
+  max-width: 65%;
+  background-color: #fff;
+}
 
-  <style>
-    .card {
-      margin: 50px auto;
-      max-width: 50%;
-      background-color: #8c92ac;
-    }
-
-    .report-text {
-      max-width: 50%;
-    }
+.report-text {
+  max-width: 40%;
+}
 
 
-    /* footer */
-    .ftr {
-      color: #cccccc;
-    }
+/* footer */
+.ftr {
+  color: #cccccc;
+}
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: "Montserrat";
-    }
-  </style>
-</head>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat";
+}
+</style>
+{% endblock %}
 
-<body>
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <h1 style="text-align: center; padding-bottom: 2rem;"><strong>Report</strong></h1>
+    <div class="report-text container">
+      <div class="row">
+        <div class="col">
+          <p>Name :</p>
+          <p>Age :</p>
+          <p>Gender :</p>
+          <p>Blood Group :</p>
+          <p>Medical History :</p>
+          <p>Phone Number :</p>
+          <p>Date :</p>
+          <p>Result :</p>
+        </div>
+        <div class="col">
+          {% for user in user_data %}
+          <p>{{user[1]}}</p>
+          <p>{{user[2]}}</p>
+          <p>{{user[3]}}</p>
+          <p>{{user[4]}}</p>
+          <p>{{user[5]}}</p>
+          <p>{{user[6]}}</p>
+          <p>{{user[7]}}</p>
+          <p><b>{{user[8]}}</b></p>
+          {% endfor %}
+        </div>
+      </div>
+      <button class="btn-print btn btn-dark">Print Report</button>
+      <!-- For print function -->
+      <script>
+        (function (w, d) {
+          'use strict';
+
+          d.querySelector('.btn-print').addEventListener('click', function () { w.print(); }, false);
+
+        }(window, document));
+      </script>
+    </div>
+
+
+  </div>
+
+</div>
+
+{% endblock%}
+ 
+
+
+
+
+
+<!-- <body> -->
 
 
   <!-- navbar -->
-  <div>
+  <!-- <div>
     <nav class="navbar navbar-expand-lg ">
       <a class="navbar-brand" href="">LTD</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -97,66 +152,23 @@
           </li>
         </ul>
       </div>
-  </div>
+  </div> -->
 
   <!-- report section -->
 
 
-  <div class="card">
-    <div class="card-body">
-      <h1 style="text-align: center; padding-bottom: 2rem;">Report</h1>
-      <div class="report-text container">
-        <div class="row">
-          <div class="col">
-            <p>Name:</p>
-            <p>Age:</p>
-            <p>Gender:</p>
-            <p>Blood Group:</p>
-            <p>Medical History:</p>
-            <p>Phone Number:</p>
-            <p>Date:</p>
-            <p>Result:</p>
-          </div>
-          <div class="col">
-            {% for user in user_data %}
-            <p>{{user[1]}}</p>
-            <p>{{user[2]}}</p>
-            <p>{{user[3]}}</p>
-            <p>{{user[4]}}</p>
-            <p>{{user[5]}}</p>
-            <p>{{user[6]}}</p>
-            <p>{{user[7]}}</p>
-            <p><b>{{user[8]}}</b></p>
-            {% endfor %}
-          </div>
-        </div>
-        <button class="btn-print btn btn-dark">Print Report</button>
-        <!-- For print function -->
-        <script>
-          (function (w, d) {
-            'use strict';
-
-            d.querySelector('.btn-print').addEventListener('click', function () { w.print(); }, false);
-
-          }(window, document));
-        </script>
-      </div>
-
-
-    </div>
-
-  </div>
+ 
 
 
   <!-- footer -->
-  <footer class="small bg-light ftr">
+  <!-- <footer class="small bg-light ftr">
     <div class="ftr container py-3 py-sm-5 text-center">
       <ul class="list-inline mt-2 mb-0 text-center">
         <li class="list-inline-item">&copy 2021 LTD</li>
         <li class="list-inline-item">Thank you for visiting.</li>
       </ul>
     </div>
-  </footer>
+  </footer> -->
 
 
 

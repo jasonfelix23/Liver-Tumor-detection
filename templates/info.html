@@ -3,21 +3,30 @@
 
 {% block header %}
 <link rel="stylesheet" href="/static/css/form.css" />
+
 {% endblock %}
 
 {% block content %}
-<div class="form container my-3">
-  <h2 class="h4 text-white mb-3 p-4 rounded" style="text-align: center;">Patient's Information</h2>
-  <div class="row">
+<div class="main-page">
+  <div class="form container my-3">
+    <h2 class="h4 text-white mb-3 p-4 rounded" style="text-align: center;"><strong>Patient's Information</strong></h2>
+    <div class="row">
 
-    <div class="col-6">
       <form class="mb-3" action="form" method="POST">
         <div class="form-group">
-          <label for="name">Name:</label>
-          <input class="form-control" type="text" name="name" value="">
+          <label for="name"></label>
+          <input class="form-control"placeholder="Name" type="text" name="name" value="">
         </div>
+
+        
         <div class="form-group">
-          <label for="gender">Gender:</label><br>
+          <label for="age"></label>
+          <input class="form-control" placeholder="Age" type="text" name="age" value="">
+        </div>
+
+
+        <div class="form-group">
+          <label for="gender"></label><br>
           <input type="radio" id="male" name="gender" value="male">
           <label for="male">Male</label>
           <input type="radio" id="female" name="gender" value="female">
@@ -25,143 +34,46 @@
           <input type="radio" id="other" name="gender" value="other">
           <label for="other">Other</label>
         </div>
+
         <div class="form-group">
-          <label id="medhist" for="medicalHistory">Any Previous Medical Conditions:</label>
-          <input class="form-control" type="text" name="mHist" value="">
+          <label for="detection"></label><br>
+          <input type="radio" id="detected" name="report" value="Tumor Detected">
+          <label for="male">Tumor Detected</label>
+          <input type="radio" id="notDetected" name="report" value="Tumor Not Detected">
+          <label for="female">Tumor Not Detected</label>
+        </div>
+
+
+        <div class="form-group">
+          <label id="medhist" for="medicalHistory"></label>
+          <input class="form-control" placeholder="Previous Medical Conditions" type="text" name="mHist" value="">
+        </div>
+
+
+        <div class="form-group">
+          <label for="phoneNo"></label>
+          <input class="form-control" placeholder="Phone Number" type="text" name="pNo" value="">
         </div>
 
         <div class="form-group">
-          <label for="blood group">Blood Group:</label>
-          <input class="form-control" type="text" name="bgrp" value="">
+          <label for="blood group"></label>
+          <input class="form-control" placeholder="Blood Group" type="text" name="bgrp" value="">
         </div>
 
-        <button type="submit" class="btn btn-outline-dark">Submit</button>
-        <button type="reset" class="btn btn-dark">Reset</button>
 
+        <div class="form-group">
+          <label for="date"></label>
+          <input class="form-control" type="date" name="tdate" value="">
+        </div>
 
-    </div>
-
-
-    <div class="col-6">
-      <div class="form-group">
-        <label for="age">Age:</label>
-        <input class="form-control" type="text" name="age" value="">
-      </div>
-      <div class="form-group">
-        <label for="detection">Detection Results:</label><br>
-        <input type="radio" id="detected" name="report" value="Tumor Detected">
-        <label for="male">Tumor Detected</label>
-        <input type="radio" id="notDetected" name="report" value="Tumor Not Detected">
-        <label for="female">Tumor Not Detected</label>
-      </div>
-
-      <div class="form-group">
-        <label for="phoneNo">Phone Number:</label>
-        <input class="form-control" type="text" name="pNo" value="">
-      </div>
-
-      <div class="form-group">
-        <label for="date">Date:</label>
-        <input class="form-control" type="date" name="tdate" value="">
-      </div>
-    </div>
-
-    </form>
-
+      
+        <button type="submit" class="btn btn-dark">Submit</button>
+      </form>
+ 
   </div>
+
 </div>
+
 
 {% endblock%}
 
-<!-- <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
-<head>
-  <meta charset="utf-8">
-  <title></title> -->
-  <!-- bootstrap -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/css/navbar.css">
-  <link rel="stylesheet" href="/static/css/form.css"> -->
-
-  <!-- fonts -->
-  <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
-    rel="stylesheet"> -->
-
-  <!-- js -->
-  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-
-</head> -->
-
-<!-- <body> -->
-  <!-- navbar -->
-  <!-- <div>
-    <nav class="navbar navbar-expand-lg ">
-      <a class="navbar-brand" href="">LTD</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li>
-            {% if ses == True %}
-            <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
-            {% else %}
-            <a class="nav-link" href="{{url_for('login')}}">Login</a>
-            {% endif %}
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:5000/mainPage">Scan your MRI</a>
-          </li>
-          <li class="nav-item">
-            <div class="btn-group">
-              <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                specialists
-              </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <button class="dropdown-item" type="nav-link"><a
-                    href="http://127.0.0.1:5000/doctors/Mumbai">Mumbai</a></button>
-                <button class="dropdown-item" type="button"><a
-                    href="http://127.0.0.1:5000/doctors/Delhi">Delhi</a></button>
-                <button class="dropdown-item" type="button"><a
-                    href="http://127.0.0.1:5000/doctors/Bangalore">Bangalore</a></button>
-                <button class="dropdown-item" type="button"><a
-                    href="http://127.0.0.1:5000/doctors/Chennai">Chennai</a></button>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-  </div> -->
-
-
-  <!-- form -->
-
-
-
-  <!-- footer -->
-  <!-- <footer class="small bg-light ftr">
-    <div class="ftr container py-3 py-sm-5 text-center">
-      <ul class="list-inline mt-2 mb-0 text-center">
-        <li class="list-inline-item">&copy 2021 LTD</li>
-        <li class="list-inline-item">Thank you for visiting.</li>
-      </ul>
-    </div>
-  </footer> -->
-
-<!-- </body>
-
-</html> -->
