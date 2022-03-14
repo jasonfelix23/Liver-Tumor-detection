@@ -32,7 +32,7 @@ def cust_foreground_acc(inp, targ):  # # include a background into the metric
     return foreground_acc(inp=inp, targ=targ, bkg_idx=3, axis=1) # 3 is a dummy value to include the background which is 0
 
 
-learn0 = load_learner(path/f'Liver_segmentation_unet',cpu=False )
+learn0 = load_learner(path/f'Liver_segmentation_unet.h5',cpu=False )
 #model = keras.models.load_model("Liver_segmentation_unet.h5")
 
 
@@ -41,6 +41,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 result = ""
 ses = False
+name = ""
 
 #  ============================================== MODEL ==============================================
 
@@ -54,10 +55,10 @@ def check(number, filename):
         return 'Tumor Detected'
 
 def malignantBeningCheck(count):
-    if(count <15):
+    if(count <500):
         return 'malignant'
     else:
-        return 'Bening'
+        return 'Benign'
     
 
 
@@ -75,6 +76,7 @@ def process_img(img, add_pixels_value=0):
 @app.route("/mainPage", methods=["GET", "POST"])
 
 def mainPage():
+        
 
     if request.method == 'POST':
         for filename in os.listdir('static/'):
@@ -135,8 +137,10 @@ def mainPage():
 
 
             #print(prediction)
-            return render_template("result.html", img = timeStamp, predicted_results= predicted_results, size_result = size_result, ses=ses, error="")
-    return render_template("index.html", ses=ses, error="")
+            return render_template("result.html", img = timeStamp, predicted_results= predicted_results, size_result = size_result,
+             ses=ses,name=name, error="")
+    return render_template("index.html",name= name, ses=ses, error="")
+
 
 
 @app.route("/result", methods=['GET', 'POST'])
@@ -165,7 +169,7 @@ def form():
         print(user_details)
         insertdata(user_details)
         return redirect(url_for('displayData'))
-    return render_template('info.html', ses=ses)
+    return render_template('info.html', ses=ses, name =name)
 
 
 def insertdata(user_details):
@@ -196,7 +200,7 @@ def displayData():
     if request.method == "GET":
         user_data = query_data()
         print(user_data)
-        return render_template('display.html', user_data=user_data, ses=ses)
+        return render_template('display.html', user_data=user_data, ses=ses, name=name)
 
 #  ============================================== Login/Sign Up Backend ==============================================
 
@@ -260,8 +264,10 @@ def login():
             return render_template('login.html', error="Login Failed: No such user exists")
         else:
             global ses
+            global name
             ses = True
-            return render_template('index.html', ses=ses, error="")
+            name = row[0]
+            return render_template('index.html',name = name, ses=ses, error="")
 
     return render_template("login.html", error="")
 
@@ -270,8 +276,9 @@ def login():
 def logout():
     global ses
     ses = False
+    name = ''
 
-    return render_template('login.html', ses=ses, error='')
+    return render_template('login.html', ses=ses, name=name, error='')
 
 
 #================================== DOCTOR'S PAGE ==============================================

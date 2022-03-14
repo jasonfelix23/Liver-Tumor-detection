@@ -1,5 +1,5 @@
 body{
-  background-image: url("https://images.pexels.com/photos/3683041/pexels-photo-3683041.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background-image: url("https://img.freepik.com/free-vector/digital-technology-background-with-abstract-wave-border_53876-117508.jpg?w=1380") !important;
   background-color: #cccccc;
   background-repeat: no-repeat;
  background-size: cover;
@@ -21,8 +21,8 @@ body{
   text-align: center;
   padding: 20px;
   font-weight: bold;
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
+  color: #000000;
+  text-shadow: 2px 2px 4px #646161;
 }
 
 

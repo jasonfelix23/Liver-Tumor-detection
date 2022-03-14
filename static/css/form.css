@@ -16,6 +16,15 @@ body{
   background-color: #05445E;
 }
 
+.heading{
+  font-size: 3rem;
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+  color: #000000;
+  text-shadow: 2px 2px 4px #646161;
+}
+
 /* footer */
 .ftr{
   color: #cccccc;
