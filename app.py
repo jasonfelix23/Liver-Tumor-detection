@@ -79,6 +79,8 @@ def mainPage():
                 os.remove('static/' + filename)
             if filename.startswith('scan'):
                 os.remove('static/' + filename)
+            if filename.startswith('pred'):
+                os.remove('static/' + filename)
                 
         file = request.files['mri']
         if 'mri' not in request.files:
@@ -110,8 +112,9 @@ def mainPage():
             preds, y = learn0.get_preds(dl=test_dl)
 
             predicted_mask = np.argmax(preds, axis=1)
+            pred_path ="pred" + str(time.time()) + ".jpg"
 
-            #plt.imshow(predicted_mask[0])
+            plt.imsave('static/'+pred_path,predicted_mask[0])
             #prediction = learn0.predict(img_fin)
             #predicted_mask = np.argmax(prediction, axis=1)
             a=np.array(predicted_mask[0])
@@ -136,7 +139,7 @@ def mainPage():
 
 
             #print(prediction)
-            return render_template("result.html", img = img_path0, predicted_results= predicted_results, size_result = size_result,
+            return render_template("result.html", img1 = timeStamp, img2 = img_path0, img3 = pred_path, predicted_results= predicted_results, size_result = size_result,
              ses=ses,name=name, error="")
     return render_template("index.html",name= name, ses=ses, error="")
 

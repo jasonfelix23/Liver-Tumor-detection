@@ -3,14 +3,27 @@
 
 {% block header %}
 <link rel="stylesheet" href="/static/css/result.css" />
+
 {% endblock %}
 
 {% block content %}
-<div style="display:flex;justify-content:center;flex-direction: column; text-align: center; width: 100%; ">
-  <p class="text-secondary" >Scanned image</p>
-  <div style="display:flex;justify-content:center;">
-  <img style="height:300px; width:300px" src="{{ url_for('static', filename=img) }}" />
-</div>
+
+<!-- style="display:flex;justify-content:center;flex-direction: column; text-align: center; width: 100%; -->
+<!-- style="display:flex;justify-content:center;" -->
+<!-- style="height:300px; width:300px" -->
+<div class="row" style="justify-content: center; after {content: "";clear: both;display: table;}">
+  <div class="column" style="float: left;width: 30%;padding: 5px;" >
+    <p class="text-secondary" style="display:flex; justify-content: center;">Scanned image</p>
+    <img  src="{{ url_for('static', filename=img1) }}" style="width:100%"/>
+  </div>
+  <div class="column" style="float: left;width: 30%;padding: 5px;">
+    <p class="text-secondary" style="display:flex; justify-content: center;">filtered image</p>
+    <img src="{{ url_for('static', filename=img2) }}" style="width:100%" />
+  </div>
+  <div class="column" style="float: left;width: 20%;padding: 5px;">
+    <p class="text-secondary" style="display:flex; justify-content: center;" >predicted image</p>
+    <img src="{{ url_for('static', filename=img3) }}" style="width:100%" />
+  </div>
 </div>
   <div class="main-page" style="text-align: center;">
     <h1 class="result">{{predicted_results}}</h1>
