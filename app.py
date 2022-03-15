@@ -63,12 +63,7 @@ def malignantBeningCheck(count):
 
 
 def process_img(img, add_pixels_value=0):
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    img = cv2.GaussianBlur(img, (5, 5), 0)
-    # Thresholding the image, and performing a series of erosions + dilations to remove any regions of noise
-    thresh = cv2.threshold(img, 45, 255, cv2.THRESH_BINARY)[1]
-    thresh = cv2.erode(thresh, None, iterations=2)
-    new_img = cv2.dilate(thresh, None, iterations=2)
+    new_img = cv2.applyColorMap(img, cv2.COLORMAP_INFERNO)
 
     return np.array(new_img, dtype=object)
 
@@ -81,6 +76,8 @@ def mainPage():
     if request.method == 'POST':
         for filename in os.listdir('static/'):
             if filename.startswith('work'):  # not to remove other images
+                os.remove('static/' + filename)
+            if filename.startswith('scan'):
                 os.remove('static/' + filename)
                 
         file = request.files['mri']
@@ -99,8 +96,10 @@ def mainPage():
             file.save(filepath)
             img = cv2.imread("./static/"+timeStamp)
             img_array = process_img(img)
-            cv2.imwrite("assets/new/Y32.jpg", np.float32(img_array))
-            img_get = cv2.imread("assets/new/Y32.jpg")
+            img_path0 ="scan" + str(time.time()) + ".jpg"
+            img_path = "static/"+img_path0
+            cv2.imwrite(img_path, np.float32(img_array))
+            img_get = cv2.imread(img_path)
             img_fin = cv2.resize(img_get, (512, 512))
             img_array = np.array(img_fin)
             print(img_array.shape)
@@ -137,7 +136,7 @@ def mainPage():
 
 
             #print(prediction)
-            return render_template("result.html", img = timeStamp, predicted_results= predicted_results, size_result = size_result,
+            return render_template("result.html", img = img_path0, predicted_results= predicted_results, size_result = size_result,
              ses=ses,name=name, error="")
     return render_template("index.html",name= name, ses=ses, error="")
 
