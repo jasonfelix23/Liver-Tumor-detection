@@ -1,6 +1,6 @@
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 body {
   background-image: url("https://img.freepik.com/free-vector/digital-technology-background-with-abstract-wave-border_53876-117508.jpg?w=1380") !important;
   background-repeat: no-repeat !important;
@@ -8,7 +8,7 @@ body {
 }
 
 .main-page {
-  margin-top: 100px !important;
+  margin-top: 30px !important;
   text-align: center !important;
 }
 

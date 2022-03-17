@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Images-NII{% endblock %}
+
+{% block header %}
+<link rel="stylesheet" href="/static/css/result.css" />
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="main-page">
+        <div class="row row-cols-1 row-cols-md-2 g-4" style="justify-content:center">
+            <div class="col" style="width: 40%;">
+                <div class="card" >
+                    <div class="bg-image hover-overlay hover-zoom hover-shadow ripple">
+                        <img src="{{ url_for('static', filename=file_array[0]) }}" class="card-img-top"/>
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(57, 192, 237, 0.2)"></div>
+                          </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Slice 1</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col"style="width: 40%;">
+                <div class="card">
+                    <div class="bg-image hover-overlay hover-zoom hover-shadow ripple">
+                        <img src="{{ url_for('static', filename=file_array[1]) }}" class="card-img-top"/>
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(57, 192, 237, 0.2)"></div>
+                          </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Slice 2</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col" style="width: 40%;">
+                <div class="card">
+                    <div class="bg-image hover-overlay hover-zoom hover-shadow ripple">
+                        <img src="{{ url_for('static', filename=file_array[2]) }}" class="card-img-top"/>
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(57, 192, 237, 0.2)"></div>
+                          </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Slice 3</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col" style="width: 40%;">
+                <div class="card">
+                    <div class="bg-image hover-overlay hover-zoom hover-shadow ripple">
+                        <img src="{{ url_for('static', filename=file_array[3]) }}" class="card-img-top"/>
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(57, 192, 237, 0.2)"></div>
+                          </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Slice 4</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-page" style="text-align: center;">
+            {% if ses == True %}
+            <button type="button" class="btn-light btn-lg formFill" style="margin-top: 30px;"><a
+                href="http://127.0.0.1:5000/form">Fill Patient
+                Details</a></button>
+            {% else%}
+            <button type="button" class="btn-light btn-lg formFill" style="margin-top: 30px;"><a
+                href="http://127.0.0.1:5000/">Login to Fill Patient
+                Details</a></button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock%}
+ 
