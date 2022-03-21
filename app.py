@@ -140,9 +140,9 @@ def processNiifiles(filepath):
     file_array = []
     for curr_slice in range(int(curr_dim/2),curr_dim,3): 
         data = tensor(curr_ct[...,curr_slice].astype(np.float32))
-        save_file_name = f'{curr_file_name}_slice_{curr_slice}.jpg'
-        data.save_jpg(f"static/"+save_file_name, [dicom_windows.liver,dicom_windows.custom])
         curr_count += 1
+        save_file_name = f'{curr_file_name}_slice_{curr_count}.jpg'
+        data.save_jpg(f"static/"+save_file_name, [dicom_windows.liver,dicom_windows.custom])
         file_array.append(save_file_name)
         if(curr_count == 4):
             break;
@@ -159,6 +159,8 @@ def nii():
             if filename.startswith('scan'):
                 os.remove('static/' + filename)
             if filename.startswith('pred'):
+                os.remove('static/' + filename)
+            if filename.startswith('slice'):
                 os.remove('static/' + filename)
                 
         file = request.files['nii']
@@ -185,10 +187,64 @@ def nii():
 def imagesNii():
     return render_template('imagesNii.html', ses=ses, error="")
 
-@app.route("/predNii/<filename>", methods=['GET'])
-def predNii(filename):
-    filename = request.args.get('filename')
-    return render_template('imagesNii.html', ses=ses, error="")
+@app.route("/predNii/<id>")
+def predNii(id):
+    for filename in os.listdir('static/'):
+        if f'slice_{id}' in filename:
+            timeStamp = filename
+            break
+    
+    img = cv2.imread("./static/"+timeStamp)
+    img_array = process_img(img)
+    img_path0 ="scan" + str(time.time()) + ".jpg"
+    img_path = "static/"+img_path0
+    cv2.imwrite(img_path, np.float32(img_array))
+    img_get = cv2.imread(img_path)
+    img_fin = cv2.resize(img_get, (512, 512))
+    img_array = np.array(img_fin)
+    print(img_array.shape)
+    img_batch = np.expand_dims(img_array, axis=0)
+    img_array = img_array.reshape(-1, 512, 512, 3)
+    test_files = [img]
+    test_dl = learn0.dls.test_dl(test_files)
+    preds, y = learn0.get_preds(dl=test_dl)
+
+    predicted_mask = np.argmax(preds, axis=1)
+    pred_path ="pred" + str(time.time()) + ".jpg"
+
+    plt.imsave('static/'+pred_path,predicted_mask[0])
+    #prediction = learn0.predict(img_fin)
+    #predicted_mask = np.argmax(prediction, axis=1)
+    a=np.array(predicted_mask[0])
+    print(np.amin(a))
+    classification = np.amax(a)
+    #classification = np.where(prediction == np.amax(prediction))[1][0]
+    #print(classification)
+    predicted_results = check(classification, filename)
+    result = 1
+
+    unique, counts = np.unique(a, return_counts =True)
+    pred_matrix = np.array((unique, counts)).T
+    print( pred_matrix)
+    if 1 in unique:
+        liver_visiblity = (pred_matrix[1][1]/ pred_matrix[0][1])*250
+    else:
+        liver_visiblity = 0
+
+    if 2 in unique:
+        size_result = malignantBeningCheck(counts[2])
+        print(size_result)
+    else:
+        size_result = "-"
+
+            
+
+
+
+            #print(prediction)
+    return render_template("result.html", img1 = timeStamp, img2 = img_path0, img3 = pred_path, predicted_results= predicted_results, size_result = size_result,
+            liver_visiblity= liver_visiblity,ses=ses,name=name, error="")
+    
 
 
 @app.route("/mainPage", methods=["GET", "POST"])
@@ -249,7 +305,12 @@ def mainPage():
             result = 1
 
             unique, counts = np.unique(a, return_counts =True)
-            print( np.array((unique, counts)).T)
+            pred_matrix = np.array((unique, counts)).T
+            print( pred_matrix)
+            if 1 in unique:
+                liver_visiblity = (pred_matrix[1][1]/ pred_matrix[0][1])*250
+            else:
+                liver_visiblity = 0
 
             if 2 in unique:
                 size_result = malignantBeningCheck(counts[2])
@@ -263,7 +324,7 @@ def mainPage():
 
             #print(prediction)
             return render_template("result.html", img1 = timeStamp, img2 = img_path0, img3 = pred_path, predicted_results= predicted_results, size_result = size_result,
-             ses=ses,name=name, error="")
+             liver_visiblity =liver_visiblity,ses=ses,name=name, error="")
     return render_template("index.html",name= name, ses=ses, error="")
 
 
