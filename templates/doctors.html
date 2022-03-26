@@ -9,7 +9,7 @@
 <div id="">
   <div class="container my-3 my-sm-5">
     <div class="headDiv">
-      <h1 class="heading">Specialists You Can Consult</h1>
+      <h1 class="heading">Hepatologists</h1>
     </div>
     {% for doct in data %}
     <div class="box">
@@ -18,10 +18,9 @@
           <img src="/static/images/neu-stock.jpg" class="img-fluid circ" alt="">
         </div>
         <div class="col-12 col-md-6">
-          <h5>NAME: {{doct[1]}}<br>
-            CONTACT: {{doct[2]}}<br></h5>
-          <p>DESCRIPTION: {{doct[3]}}<br></p>
-          <a href="{{doct[4]}}" class="btn btn-light">VISIT THEIR WEBSITE</a>
+          <h5>{{doct[1]}}<br></h5>
+          <p>{{doct[3]}}<br></p>
+          <a href="{{doct[4]}}" class="btn btn-light">For more info</a>
         </div>
       </div>
     </div>

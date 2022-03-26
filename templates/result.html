@@ -46,15 +46,17 @@
       <h1 class="result">{{predicted_results}}</h1>
       <h1 class="result">Tumour type: {{size_result}}</h1>
       <h1 class="result">Visibility of Liver: {{liver_visiblity}} %</h1>
+      <h1 class="result">Lesion size index: {{ liver_tumor_ratio }} %</h1>
+      
       
       <!-- Option to print patient details is given only when logged in -->
       {% if ses == True %}
-      <button type="button" class="btn-light btn-lg formFill" style="margin-top: 30px;"><a
+      <button type="button" class="btn btn-dark" style="margin-top: 30px; margin-bottom: 70px;"><a
           href="http://127.0.0.1:5000/form">Fill Patient
           Details</a></button>
       {% else%}
-      <button type="button" class="btn-light btn-lg formFill" style="margin-top: 30px;"><a
-          href="http://127.0.0.1:5000/">Login to Fill Patient
+      <button type="button" class="btn btn-dark" style="margin-top: 30px; margin-bottom: 70px;"><a
+          href="http://127.0.0.1:5000/" >Login to Fill Patient
           Details</a></button>
       {% endif %}
     </div>

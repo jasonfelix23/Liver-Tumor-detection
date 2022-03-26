@@ -1,8 +1,22 @@
-{% extends "base.html" %}
-{% block title %}Info{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block header %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>LiverX-Report</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <!-- MDB -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- <link rel="stylesheet" href="/static/css/navbar.css"> -->
 
@@ -54,127 +68,118 @@ h6 {
   font-family: "Montserrat";
 }
 </style>
-{% endblock %}
+  <link rel="stylesheet" href="/static/css/mdb.min.css" />
+  
+  <!-- js -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+  </script>
+  
+</head>
 
-{% block content %}
-<div class="card">
-  <div class="card-body">
-    <h1 style="text-align: center; padding-bottom: 2rem;"><strong>Report</strong></h1>
-    <div class="report-text container">
-      <div class="row">
-        <div class="col">
-          <p>Name :</p>
-          <p>Age :</p>
-          <p>Gender :</p>
-          <p>Blood Group :</p>
-          <p>Medical History :</p>
-          <p>Phone Number :</p>
-          <p>Date :</p>
-          <p>Result :</p>
-        </div>
-        <div class="col">
-          {% for user in user_data %}
-          <p>{{user[1]}}</p>
-          <p>{{user[2]}}</p>
-          <p>{{user[3]}}</p>
-          <p>{{user[4]}}</p>
-          <p>{{user[5]}}</p>
-          <p>{{user[6]}}</p>
-          <p>{{user[7]}}</p>
-          <p><b>{{user[8]}}</b></p>
-          {% endfor %}
-        </div>
-      </div>
-      <button class="btn-print btn btn-dark">Print Report</button>
-      <!-- For print function -->
-      <script>
-        (function (w, d) {
-          'use strict';
+<body>
+  <!-- Start your project here-->
 
-          d.querySelector('.btn-print').addEventListener('click', function () { w.print(); }, false);
-
-        }(window, document));
-      </script>
-    </div>
-
-
+  <div id="preview" class="preview"><div style="display: none;">
   </div>
+  <div >
+    <div data-draggable="true" style="position: relative;" draggable="false" class="">
+      <!---->
+      <!---->
+      <section draggable="false" class="container pt-0" data-v-271253ee="">
 
-</div>
+      </section>
+        <!---->
+      </div>
 
-{% endblock%}
- 
-
-
-
-
-
-<!-- <body> -->
-
-
-  <!-- navbar -->
-  <!-- <div>
-    <nav class="navbar navbar-expand-lg ">
-      <a class="navbar-brand" href="">LTD</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li>
-            {% if ses == True %}
-            <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
-            {% else %}
-            <a class="nav-link" href="{{url_for('login')}}">Login</a>
-            {% endif %}
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:5000/mainPage">Scan your MRI</a>
-          </li>
-          <li class="nav-item">
-            <div class="btn-group">
-              <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                specialists
-              </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <button class="dropdown-item" type="nav-link"><a
-                    href="http://127.0.0.1:5000/doctors/Mumbai">Mumbai</a></button>
-                <button class="dropdown-item" type="button"><a
-                    href="http://127.0.0.1:5000/doctors/Delhi">Delhi</a></button>
-                <button class="dropdown-item" type="button"><a
-                    href="http://127.0.0.1:5000/doctors/Bangalore">Bangalore</a></button>
-                <button class="dropdown-item" type="button"><a
-                    href="http://127.0.0.1:5000/doctors/Chennai">Chennai</a></button>
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="p-2">{{ user_data[0][7]}}</div>
+            <div class="p-2"><h2>{{ dr_data[0][2]}}</h2></div>
+            <div class="p-2"><button class="btn-print btn btn-dark">Print Report</button></div>
+          </div>
+          <div class="d-flex justify-content-center"><h5>{{dr_data[0][3]}}</h5></div>
+          <div class="d-flex justify-content-center"><h5>{{dr_data[0][4]}}</h5></div>
+          <div class="d-flex justify-content-center"><h6>{{dr_data[0][5]}}</h6></div>
+          <h1 style="text-align: center; padding-bottom: 1rem; padding-top: 1 rem;"><strong>PATIENT RESULTs</strong></h1>
+          <hr style="border-top: 2px solid;">
+          <div class="report-text container">
+            <div class="row">
+              <div class="col">
+                <p>Name :</p>
+                <p>Age :</p>
+                <p>Gender :</p>
+                <p>Blood Group :</p>
+                <p>Medical History :</p>
+                <p>Phone Number :</p>
+                <p>Date :</p>
+                
+                
+              </div>
+              <div class="col">
+                {% for user in user_data %}
+                <p>{{user[1]}}</p>
+                <p>{{user[2]}}</p>
+                <p>{{user[3]}}</p>
+                <p>{{user[4]}}</p>
+                <p>{{user[5]}}</p>
+                <p>{{user[6]}}</p>
+                <p>{{user[7]}}</p>
+                {% endfor %}
+              </div>
+              <div class="col">
+                <p>Result :</p>
+                <p>liver_tumor_ratio :</p>
+                <p>liver_visiblity :</p>
+                <p>type :</p>
+              </div>
+              <div class="col">
+                <p><b>{{user_data[0][8]}}</b></p>
+                <p>{{ ltr }}</p>
+                <p>{{ lv }}</p>
+                <p>{{ sr }}</p>
               </div>
             </div>
-          </li>
-        </ul>
+            <div class="d-flex justify-content-center"><hr style="border-top: 0px solid;"></div>
+            <div class="d-flex justify-content-center"><hr style="border-top: 0px solid;"></div>
+            <div class="d-flex justify-content-center"><hr align="center" width="20%" style="border-top: 2px solid;"></div>
+            <div class="d-flex justify-content-center"><h6><strong>{{dr_data[0][2]}}</strong></h6></div>
+            <div class="d-flex justify-content-center"><h6>{{dr_data[0][5]}}</h6></div>
+            <div class="d-flex justify-content-start"><strong>LiverX</strong></div>
+            <!-- For print function -->
+            <script>
+              (function (w, d) {
+                'use strict';
+      
+                d.querySelector('.btn-print').addEventListener('click', function () { w.print(); }, false);
+      
+              }(window, document));
+            </script>
+          </div>
+      
+      
+        </div>
+      
       </div>
-  </div> -->
 
-  <!-- report section -->
+  <!-- End your project here-->
 
-
- 
-
-
-  <!-- footer -->
-  <!-- <footer class="small bg-light ftr">
-    <div class="ftr container py-3 py-sm-5 text-center">
-      <ul class="list-inline mt-2 mb-0 text-center">
-        <li class="list-inline-item">&copy 2021 LTD</li>
-        <li class="list-inline-item">Thank you for visiting.</li>
-      </ul>
-    </div>
-  </footer> -->
-
-
-
-
-
-
+  <!-- MDB -->
+  <script type="text/javascript" src="/static/js/mdb.min.js"></script>
+  <!-- Custom scripts -->
+  <script type="text/javascript"></script>
 </body>
 
 </html>
+
+
+

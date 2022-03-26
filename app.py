@@ -1,3 +1,4 @@
+import sre_compile
 from flask import Flask, render_template, request, redirect, jsonify, url_for, flash, session
 import sqlite3
 import numpy as np
@@ -227,23 +228,30 @@ def predNii(id):
     pred_matrix = np.array((unique, counts)).T
     print( pred_matrix)
     if 1 in unique:
-        liver_visiblity = (pred_matrix[1][1]/ pred_matrix[0][1])*250
+        liver_visiblity = pred_matrix[1][1]/ (pred_matrix[0][1]+pred_matrix[1][1])*250
+        liver_visiblity = float("{:.2f}".format(liver_visiblity))
     else:
         liver_visiblity = 0
 
     if 2 in unique:
         size_result = malignantBeningCheck(counts[2])
+        liver_tumor_ratio = pred_matrix[2][1]/ pred_matrix[1][1]
+        liver_tumor_ratio = float("{:.3f}".format(liver_tumor_ratio))
         print(size_result)
     else:
+        liver_tumor_ratio = "-"
         size_result = "-"
 
-            
+    global ltr,lv, sr
+    ltr = liver_tumor_ratio
+    lv = liver_visiblity
+    sr = size_result
 
 
 
             #print(prediction)
     return render_template("result.html", img1 = timeStamp, img2 = img_path0, img3 = pred_path, predicted_results= predicted_results, size_result = size_result,
-            liver_visiblity= liver_visiblity,ses=ses,name=name, error="")
+            liver_visiblity= liver_visiblity, liver_tumor_ratio = liver_tumor_ratio,ses=ses,name=name, error="")
     
 
 
@@ -303,28 +311,32 @@ def mainPage():
             #print(classification)
             predicted_results = check(classification, filename)
             result = 1
-
             unique, counts = np.unique(a, return_counts =True)
             pred_matrix = np.array((unique, counts)).T
             print( pred_matrix)
             if 1 in unique:
-                liver_visiblity = (pred_matrix[1][1]/ pred_matrix[0][1])*250
+                liver_visiblity = pred_matrix[1][1]/ (pred_matrix[0][1]+pred_matrix[1][1])*250
+                liver_visiblity = float("{:.2f}".format(liver_visiblity))
             else:
                 liver_visiblity = 0
 
             if 2 in unique:
                 size_result = malignantBeningCheck(counts[2])
+                liver_tumor_ratio = pred_matrix[2][1]/ pred_matrix[1][1]
+                liver_tumor_ratio = float("{:.3f}".format(liver_tumor_ratio))
                 print(size_result)
             else:
+                liver_tumor_ratio = "-"
                 size_result = "-"
-
-            
-
-
+                    
+            global ltr,lv, sr
+            ltr = liver_tumor_ratio
+            lv = liver_visiblity
+            sr = size_result
 
             #print(prediction)
             return render_template("result.html", img1 = timeStamp, img2 = img_path0, img3 = pred_path, predicted_results= predicted_results, size_result = size_result,
-             liver_visiblity =liver_visiblity,ses=ses,name=name, error="")
+             liver_visiblity =liver_visiblity,liver_tumor_ratio =liver_tumor_ratio,ses=ses,name=name, error="")
     return render_template("index.html",name= name, ses=ses, error="")
 
 
@@ -358,7 +370,13 @@ def form():
         )
         print(user_details)
         insertdata(user_details)
-        return redirect(url_for('displayData'))
+        print(name)
+        user_data = query_data()
+        dr_data = query_dr_data(name)
+        
+        print(user_data)
+        print(dr_data)
+        return render_template('display.html',user_data=user_data,dr_data = dr_data, ltr =ltr, lv=lv, sr=sr, ses=ses, name=name)
     return render_template('info.html', ses=ses, name =name)
 
 
@@ -370,6 +388,15 @@ def insertdata(user_details):
     conn.commit()
     conn.close()
     print(user_details)
+
+
+def query_dr_data(name):
+    conn = sqlite3.connect(db_local)
+    c = conn.cursor()
+    c.execute("select * from logindb where username=?",
+                  (name,))
+    dr_data = c.fetchall()
+    return dr_data
 
 
 def query_data():
@@ -388,9 +415,13 @@ def query_data():
 @ app.route("/displayData", methods=["GET", "POST"])
 def displayData():
     if request.method == "GET":
+        print(name)
         user_data = query_data()
+        dr_data = query_dr_data(name)
+        
         print(user_data)
-        return render_template('display.html', user_data=user_data, ses=ses, name=name)
+        print(dr_data)
+        return render_template('display.html',user_data=user_data,dr_data = dr_data, ltr =ltr, lv=lv, sr=sr, ses=ses, name=name)
 
 #  ============================================== Login/Sign Up Backend ==============================================
 
